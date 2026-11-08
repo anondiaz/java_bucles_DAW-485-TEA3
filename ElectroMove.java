@@ -78,6 +78,29 @@ public class ElectroMove {
                     break;
                 case 4:
                     // PENDENT: gestionar l'alta de vehicle
+                        // Comprovar si hi ha espai a l’array
+                        int posicioLliure = 0;
+                        for (int i = 0; i < vehicles.length; i++) {
+                                if(vehicles[i] == null){
+                                        posicioLliure = i;
+                                        break;
+                                } else if (i == vehicles.length - 1){
+                                        System.out.println("No es poden registrar més vehicles.");
+                                        break;
+                                }
+                        }
+                        System.out.println("La posicio es: " + posicioLliure);
+                        // Si hi ha espai: 
+                                // Demanar la matrícula a l’usuari.
+                                // Comprovar si la matrícula ja existeix.
+                                // Si no existeix:
+                                        // Demanar la resta de dades del vehicle a l’usuari.
+                                        // Crear el vehicle i guardar-lo a la primera posició lliure de l’array. 
+                                        // Mostrar el missatge.
+                                // Si existeix:
+                                        // Mostrar un missatge d’error
+	                // Si no hi ha espai: 
+                                // Mostrar missatge d’error
                     break;
                 case 5:
                     // PENDENT: gestionar la finalització del programa
