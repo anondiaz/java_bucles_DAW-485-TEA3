@@ -52,31 +52,33 @@ public class ElectroMove {
             );
             System.out.print("               Escull una opció: ");
             opcio = InputUtils.readInt(1, 5);
-            
+            System.out.println();
             switch (opcio) {
                 case 1:
                     // PENDENT: mostrar el llistat de vehicles
-                    System.out.println("Has escollit la opció: " + opcio);
                     for (int i = 0; i < vehicles.length; i++) {
-                        //System.out.println("Numero de vehicle " + i);
-                        System.out.println(vehicles[i]);
+                        if (vehicles[i] != null) {
+                           System.out.println(vehicles[i]);
+                        }
                     }
                     System.out.println("\n");
-
+                    break;
                 case 2:
                     // PENDENT: mostrar el llistat dels punts de càrrega
-                    System.out.println("Has escollit la opció: " + opcio);
+                    //System.out.println("\n");
                     for (int i = 0; i < puntsCarrega.length; i++) {
-                        //System.out.println("Numero de vehicle " + i);
-                        System.out.println(puntsCarrega[i]);
+                        if (puntsCarrega[i] != null) {
+                                System.out.println(puntsCarrega[i]);
+                        }
                     }
                     System.out.println("\n");
+                    break;
                 case 3:
                     // PENDENT: gestionar la càrrega del cotxe (TREBALL EN EQUIP)
-
+                    break;
                 case 4:
                     // PENDENT: gestionar l'alta de vehicle
-
+                    break;
                 case 5:
                     // PENDENT: gestionar la finalització del programa
                     System.out.println("\n" + "\nSortint del programa...");
