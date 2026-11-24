@@ -6,79 +6,122 @@ public class InputUtils {
     // i que, a més, tothom fa servir el mateix.
     private static Scanner scan = new Scanner(System.in);
 
-    // Definim quins són els codis d'error
-    public static final int ERROR_INT = Integer.MAX_VALUE;
-    public static final double ERROR_REAL = Double.MAX_VALUE;
-
     // La lectura d'un String mai pot donar un error
     public static String readLine() {
         return scan.nextLine();
     }
 
     // Revisa si el llegit és un nombre enter
+    // Retorna un missatge en cas que no ho sigui
+    // O retorna el nombre si ho és
     public static int readInt() {
-        int resultat;
-        if (scan.hasNextInt())
-            resultat = scan.nextInt();
-        else {
-            // Ignorar el valor de l'entrada
-            scan.next();
-            resultat = ERROR_INT;
-        }
-        // Per llegir el <cr>
-        scan.nextLine();
-        return resultat;
-    }
-
-    // Revisa si el llegit és un nombre enter i està comprès dins d'un rang.
-    public static int readInt(int valorMinim, int valorMaxim) {
-        //
+        // Inicialitzem la variable
         int resultat = 0;
-        if (scan.hasNextInt()) {
-            resultat = scan.nextInt();
-            // Verifica que sigui un valor dins del rang
-            if (resultat < valorMinim || resultat > valorMaxim) {
-                // En cas que no estigui dins el rang, retornarà el codi d'error.
-                resultat = ERROR_INT;
+        // Per defecte posem a false la variable de comprobació de validessa
+        boolean esValid = false;
+        do {
+            // Si es un enter assignem el nombre i posem a true la variable de validessa
+            if (scan.hasNextInt()) {
+                resultat = scan.nextInt();
+                esValid = true;
+            } else {
+                // En altre cas ignorarem el valor de l'entrada
+                scan.next();
+                // I mostrarem un missatge d'error
+                System.out.println("El valor ha de ser numèric, torna a intentar-ho.\n");
             }
-        } else {
-            scan.next();
-            resultat = ERROR_INT;
-        }
-        scan.nextLine();
-        return resultat;
-    }
-
-    public static double readReal() {
-        double resultat;
-        if (scan.hasNextDouble())
-            resultat = scan.nextDouble();
-        else {
-            // Ignorar el valor de l'entrada
-            scan.next();
-            resultat = ERROR_REAL;
-        }
-        scan.nextLine();
+            // Tornarem a llegir
+            scan.nextLine();
+        } while (!esValid); // Si no es vàlid continuem
         return resultat;
     }
 
     // Revisa si el llegit és un nombre enter i està comprès dins d'un rang.
-    public static double readReal(double valorMinim, double valorMaxim) {
-        //
-        double resultat = 0.0;
-        if (scan.hasNextDouble()) {
-            resultat = scan.nextDouble();
-            // Verifica que sigui un valor dins del rang
-            if (resultat < valorMinim || resultat > valorMaxim) {
-                // En cas que no estigui dins el rang, retornarà el valor negatiu més petit
-                resultat = ERROR_REAL;
+    // Retorna un missatge en cas que no ho sigui o no estigui dins el rang
+    // O retorna el nombre si ho és
+    public static int readInt(int valorMinim, int valorMaxim) {
+        // Inicialitzem la variable
+        int resultat = 0;
+        // Per defecte posem a false la variable de comprobació de validesa
+        boolean esValid = false;
+        do {
+            // Si es un enter assignem el nombre i posem a true la variable de validessa
+            if (scan.hasNextInt()) {
+                resultat = scan.nextInt();
+                esValid = true;
+                // Verifica que sigui un valor dins del rang
+                if (resultat < valorMinim || resultat > valorMaxim) {
+                    // En cas que no estigui dins del rang, retornarà el missatge d'error.
+                    System.out.println("El valor introduït és fora de rang, torna a intentar-ho\n");
+                    // I posarem a false la variable de validessa
+                    esValid = false;
+                }
+            } else {
+                // En cas que no sigui un nombre ignorarem el valor de l'entrada
+                scan.next();
+                // I mostrarem un missatge d'error
+                System.out.println("El valor ha de ser numèric, torna a intentar-ho.\n");                
             }
-            //
-        } else {
-            scan.next();
-            resultat = ERROR_REAL;
-        }
-        scan.nextLine();
+            // Tornarem a llegir
+            scan.nextLine();
+        } while (!esValid); // Si no es vàlid continuem
+        return resultat;
+    }
+
+    // Revisa si el llegit és un nombre real
+    // Retorna un missatge en cas que no ho sigui
+    // O retorna el nombre si ho és
+    public static double readReal() {
+        // Inicialitzem la variable
+        double resultat = 0.0;
+        // Per defecte posem a false la variable de comprobació de validesa
+        boolean esValid = false;
+        do {
+            // Si es un nombre real assignem el nombre i posem a true la variable de validessa
+            if (scan.hasNextDouble()) {
+                resultat = scan.nextDouble();
+                esValid = true;
+            } else {
+                // En altre cas ignorarem el valor de l'entrada
+                scan.next();
+                // I mostrarem un missatge d'error
+                System.out.println("El valor ha de ser numèric, torna a intentar-ho.\n");
+            }
+            // Tornarem a llegir
+            scan.nextLine();
+        } while (!esValid); // Si no es vàlid continuem
+        return resultat;
+    }
+
+    // Revisa si el llegit és un nombre real i està comprès dins d'un rang.
+    // Retorna un missatge en cas que no ho sigui o no estigui dins el rang
+    // O retorna el nombre si ho és
+    public static double readReal(double valorMinim, double valorMaxim) {
+        // Inicialitzem la variable
+        double resultat = 0.0;
+        // Per defecte posem a false la variable de comprobació de validesa
+        boolean esValid = false;
+        do {
+            // Si es un nombre real assignem el nombre i posem a true la variable de validessa
+            if (scan.hasNextDouble()) {
+                resultat = scan.nextDouble();
+                esValid = true;
+                // Verifica que sigui un valor dins del rang
+                if (resultat < valorMinim || resultat > valorMaxim) {
+                    // En cas que no estigui dins el rang, retornarà el missatge d'error.
+                    System.out.println("El valor introduït és fora de rang, torna a intentar-ho\n");
+                    // I posarem a false la variable de validessa
+                    esValid = false;
+                }
+            } else {
+                // En cas que no sigui un nombre ignorarem el valor de l'entrada
+                scan.next();
+                // I mostrarem un missatge d'error
+                System.out.println("El valor ha de ser numèric, torna a intentar-ho.\n");
+            }
+            // Tornarem a llegir
+            scan.nextLine();
+        } while (!esValid); // Si no es vàlid continuem
         return resultat;
     }
 

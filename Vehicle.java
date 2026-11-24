@@ -22,6 +22,13 @@ public class Vehicle {
     // Constructors
 
     Vehicle(String matricula, String marca, String model, int autonomia, Coordenades ubicacio) {
+        // Comprovem que l'autonomia sigui superior a 0 amb la asserció
+        // assert autonomia > 0 : "Autonomia incorrecta";
+        // Comprovem que l'autonomia sigui superior a 0 amb la excepció
+        if (autonomia <= 0) {
+            throw new IllegalArgumentException("L'autonomia ha de ser superior a zero");
+        }
+
         this.matricula = matricula;
         this.marca = marca;
         this.model = model;
